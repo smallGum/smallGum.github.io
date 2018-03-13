@@ -1,0 +1,17 @@
+future: true
+permalink: /:title/
+url: http://smallGum.github.io
+name: Jack Cheng
+author: Jack Cheng
+qq: 767833640
+email: 767833640@qq.com
+
+duoshuo: Jack Cheng
+beian: 
+cnzz: 
+weibo: 
+github: smallGum
+about: "This is my personal blog, created in 2018"
+
+safe: true
+paginate: 20
