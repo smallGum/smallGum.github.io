@@ -15,3 +15,5 @@ about: "This is my personal blog, created in 2018"
 
 safe: true
 paginate: 20
+
+markdown: kramdown
