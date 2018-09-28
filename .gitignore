@@ -1,11 +1,9 @@
-.DS_Store
-
-# Compiled site
 _site
-
-# Sass garbage
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+codekit-config.json
+node_modules
+Gemfile.lock
 .sass-cache
-
-# Bundler
-.bundle/
-vendor/
+.jekyll-metadata
