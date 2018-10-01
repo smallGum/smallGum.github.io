@@ -9,4 +9,4 @@ modified: 2018-09-28
 
 ## Sites:
 
-<div markdown="0"><a href="{{ site.url }}/resume/cv.html" class="btn btn-info">Resume</a> <a href="https://github.com/smallGum" class="btn btn-success">Github</a></div>
+<div markdown="0"><a href="{{ site.url }}/resume/cv.html" class="btn btn-info">Resume</a> <a href="https://github.com/smallGum" class="btn btn-success">Github</a> <a href="https://www.researchgate.net/profile/Jiezhu_Cheng" class="btn btn-warning">ResearchGate</a></div>
