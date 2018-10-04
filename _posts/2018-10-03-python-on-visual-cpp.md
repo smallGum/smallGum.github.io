@@ -60,4 +60,203 @@ def msvar(param_file_path):
 
 Note that in order to avoid type errors while passing parameters from C# to C++ and Python, we store all parameters to files and read them when necessary.
 
-(Unfinished)
+#### Step 1.2: Create msvar C++ project
+
+Open Visual Studio Ultimate 2012 and create a new Visual C++ Empty Project:
+
+![msvar console application](../images/python_on_visual_cpp/new_C++_project.PNG)
+
+Enter Python installation directory and copy **include** and **libs** to our msvar project's location:
+
+![copy python files](../images/python_on_visual_cpp/copy_files.PNG)
+
+Since the **Debug** mode on Visual Studio requires `python27_d.lib` file rather than `python27.lib`, we must change this file's name in **libs** directory:
+
+![change library name](../images/python_on_visual_cpp/change_lib_name.PNG)
+
+Open the attribute of our msvar project and set additional Python library:
+
+![set include](../images/python_on_visual_cpp/set_include.PNG)
+
+![set library](../images/python_on_visual_cpp/set_lib.PNG)
+
+![set python27_d](../images/python_on_visual_cpp/set_python_lib.PNG)
+
+#### Step 1.3: Write C++ code and test
+
+Create a new `.cpp` file and add following function:
+
+```c++
+#include <python.h>
+#include <stdlib.h>
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// call Python's msvar model
+// param: pFile the directory of your Python scripts
+// param: cFile the path of your config file
+void msvar(char* pFile, char* cFile) {
+	string pythonFilePath = string(pFile);
+	string configFilePath = string(cFile);
+
+	// Initialize Python and load models
+	Py_Initialize();
+
+	// check if the initialization success
+	if (!Py_IsInitialized()) {
+		cout << "Initialized failed !" << endl;
+		return ;
+	}
+
+	// add path of Python script to system path
+	// PyRun_SimpleString can execute Python script directly
+	PyRun_SimpleString("import sys");
+	PyRun_SimpleString("print ('---import sys---')");
+	string wholePath = "sys.path.append(\'" + pythonFilePath + "\')";
+	PyRun_SimpleString(wholePath.c_str());
+	PyRun_SimpleString("print(sys.path)");
+
+	PyObject *pName = NULL, *pModule = NULL, *pDict = NULL, *pFunc = NULL, *pArgs = NULL;
+	
+	// load python script
+	cout << "Finding python file msvar......" << endl;
+	pName = PyUnicode_FromString("msvar");
+	pModule = PyImport_Import(pName);
+	if (!pModule) {
+		cout << "can't find python file." << endl;
+		return ;
+	}
+
+	// get the functions
+	pDict = PyModule_GetDict(pModule);
+	if (!pDict) {
+		cout << "Get functions failed !" << endl;
+	}
+
+	// find the msvar function  
+	cout << "Finding msvar function......" << endl;
+	pFunc = PyDict_GetItemString(pDict, "msvar");
+	if (!pFunc || !PyCallable_Check(pFunc)) {
+		cout << "can't find function msvar." << endl;
+		return ;
+	}
+
+	// add parameters
+	pArgs = PyTuple_New(1);
+
+	// PyObject* Py_BuildValue(char *format, ...) 
+	// translate variables in C++ to Python objects  
+	// common format:  
+	// s string
+	// i integer
+	// f float
+	// O a Python object
+	PyTuple_SetItem(pArgs, 0, Py_BuildValue("s", configFilePath.c_str()));
+
+	// call the Python function  
+	PyObject_CallObject(pFunc, pArgs);
+
+	// finalize Python
+	Py_Finalize();
+}
+
+int main() {
+	// enter your corresponding file path
+	msvar("G:\\MSVAR\\Python_scripts", "G:\\MSVAR\\ControlParam\\controlParam.csv");
+	system("pause");
+
+	return 0;
+}
+```
+
+Run the code above under **Debug** mode. If there is no error, we can package it into DLL file.
+
+### Step 2: Package `.cpp` files of step 1 into DLL file
+
+Create a new Win32 Console Application called **msvarDLL** under the same solution:
+
+![new Win32 project](../images/python_on_visual_cpp/new_win32_project.PNG)
+
+Enter the guide, click **next step**, choose **DLL** type and finish creation:
+
+![create DLL](../images/python_on_visual_cpp/create_DLL.PNG)
+
+Then open **msvarDLL** attribute and set Python **include** and **libs** path like step 1.2. Next, we create **msvar.h** file and write following configuration:
+
+```c++
+#include <string>
+
+using namespace std;
+
+#ifndef MSVARDLL_H_
+#define MSVARDLL_H_
+#ifdef MYLIBDLL
+#define MYLIBDLL extern "C" _declspec(dllimport) 
+#else
+#define MYLIBDLL extern "C" _declspec(dllexport) 
+#endif
+MYLIBDLL void msvar(char* pythonFilePath, char* configFilePath);
+#endif
+```
+
+Finally, we move our msvar function in step 1.3 into **msvarDLL.cpp** file:
+
+```c++
+#include "stdafx.h"
+#include "msvar.h"
+#include <python.h>
+#include <stdlib.h>
+#include <iostream>
+
+// call Python's msvar model
+// param: pFile the directory of your Python scripts
+// param: cFile the path of your config file
+void msvar(char* pFile, char* cFile) {...}
+```
+
+Set our **msvarDLL** project as the startup project and recreate the solution, we eventually get the `.dll` file of our msvar model:
+
+![create DLL](../images/python_on_visual_cpp/get_DLL_file.PNG)
+
+### Step 3: Import the DLL file of step 2 and use the model on C# programs
+
+Create a new C# Console Application called **msvarDLLTest** under the same solution:
+
+![test DLL](../images/python_on_visual_cpp/create_CSharp_project.PNG)
+
+Add following C# program to run the msvar model of Python:
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace msvarDLLTest
+{
+    class Program
+    {
+        // import your dll file
+        [DllImport(@"G:\MSVAR\msvar\Debug\msvarDLL.dll", EntryPoint = "msvar", CallingConvention=CallingConvention.Cdecl)]
+        extern static void msvar(byte[] pythonFilePath, byte[] configFilePath);
+
+        static void Main(string[] args)
+        {
+            byte[] pFile = System.Text.Encoding.Default.GetBytes("G:\\MSVAR\\Python_scripts");
+            byte[] cFile = System.Text.Encoding.Default.GetBytes("G:\\MSVAR\\ControlParam\\controlParam.csv");
+            msvar(pFile, cFile);
+            Console.ReadLine();
+        }
+    }
+}
+```
+
+## Result
+
+Finally, we run the C# msvar model using close price data of IF with 2 regime, and got the correct result:
+
+![result](../images/python_on_visual_cpp/get_result.PNG)
