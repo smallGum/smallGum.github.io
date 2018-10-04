@@ -64,23 +64,35 @@ Note that in order to avoid type errors while passing parameters from C# to C++ 
 
 Open Visual Studio Ultimate 2012 and create a new Visual C++ Empty Project:
 
-![msvar console application](https://smallGum.github.io/images/python_on_visual_cpp/new_C++_project.PNG)
+<figure>
+	<img src="/images/python_on_visual_cpp/new_C++_project.PNG" alt="msvar console application">
+</figure>
 
 Enter Python installation directory and copy **include** and **libs** to our msvar project's location:
 
-![copy python files](https://smallGum.github.io/images/python_on_visual_cpp/copy_files.PNG)
+<figure>
+	<img src="/images/python_on_visual_cpp/copy_files.PNG" alt="copy python files">
+</figure>
 
 Since the **Debug** mode on Visual Studio requires `python27_d.lib` file rather than `python27.lib`, we must change this file's name in **libs** directory:
 
-![change library name](https://smallGum.github.io/images/python_on_visual_cpp/change_lib_name.PNG)
+<figure>
+	<img src="/images/python_on_visual_cpp/change_lib_name.PNG" alt="change library name">
+</figure>
 
 Open the attribute of our msvar project and set additional Python library:
 
-![set include](https://smallGum.github.io/images/python_on_visual_cpp/set_include.PNG)
+<figure>
+	<img src="/images/python_on_visual_cpp/set_include.PNG" alt="set include">
+</figure>
 
-![set library](https://smallGum.github.io/images/python_on_visual_cpp/set_lib.PNG)
+<figure>
+	<img src="/images/python_on_visual_cpp/set_lib.PNG" alt="set library">
+</figure>
 
-![set python27_d](https://smallGum.github.io/images/python_on_visual_cpp/set_python_lib.PNG)
+<figure>
+	<img src="/images/python_on_visual_cpp/set_python_lib.PNG" alt="set python27_d">
+</figure>
 
 #### Step 1.3: Write C++ code and test
 
@@ -177,11 +189,15 @@ Run the code above under **Debug** mode. If there is no error, we can package it
 
 Create a new Win32 Console Application called **msvarDLL** under the same solution:
 
-![new Win32 project](https://smallGum.github.io/images/python_on_visual_cpp/new_win32_project.PNG)
+<figure>
+	<img src="/images/python_on_visual_cpp/new_win32_project.PNG" alt="new Win32 project">
+</figure>
 
 Enter the guide, click **next step**, choose **DLL** type and finish creation:
 
-![create DLL](https://smallGum.github.io/images/python_on_visual_cpp/create_DLL.PNG)
+<figure>
+	<img src="/images/python_on_visual_cpp/create_DLL.PNG" alt="create DLL">
+</figure>
 
 Then open **msvarDLL** attribute and set Python **include** and **libs** path like step 1.2. Next, we create **msvar.h** file and write following configuration:
 
@@ -218,13 +234,17 @@ void msvar(char* pFile, char* cFile) {...}
 
 Set our **msvarDLL** project as the startup project and recreate the solution, we eventually get the `.dll` file of our msvar model:
 
-![create DLL](https://smallGum.github.io/images/python_on_visual_cpp/get_DLL_file.PNG)
+<figure>
+	<img src="/images/python_on_visual_cpp/get_DLL_file.PNG" alt="get DLL file">
+</figure>
 
 ### Step 3: Import the DLL file of step 2 and use the model on C# programs
 
 Create a new C# Console Application called **msvarDLLTest** under the same solution:
 
-![test DLL](https://smallGum.github.io/images/python_on_visual_cpp/create_CSharp_project.PNG)
+<figure>
+	<img src="/images/python_on_visual_cpp/create_CSharp_project.PNG" alt="test DLL">
+</figure>
 
 Add following C# program to run the msvar model of Python:
 
@@ -259,4 +279,6 @@ namespace msvarDLLTest
 
 Finally, we run the C# msvar model using close price data of IF with 2 regime, and got the correct result:
 
-![result](https://smallGum.github.io/images/python_on_visual_cpp/get_result.PNG)
+<figure>
+	<img src="/images/python_on_visual_cpp/get_result.PNG" alt="result">
+</figure>
