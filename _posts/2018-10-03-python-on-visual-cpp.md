@@ -64,23 +64,23 @@ Note that in order to avoid type errors while passing parameters from C# to C++ 
 
 Open Visual Studio Ultimate 2012 and create a new Visual C++ Empty Project:
 
-![msvar console application](../images/python_on_visual_cpp/new_C++_project.PNG)
+![msvar console application](/images/python_on_visual_cpp/new_C++_project.PNG)
 
 Enter Python installation directory and copy **include** and **libs** to our msvar project's location:
 
-![copy python files](../images/python_on_visual_cpp/copy_files.PNG)
+![copy python files](/images/python_on_visual_cpp/copy_files.PNG)
 
 Since the **Debug** mode on Visual Studio requires `python27_d.lib` file rather than `python27.lib`, we must change this file's name in **libs** directory:
 
-![change library name](../images/python_on_visual_cpp/change_lib_name.PNG)
+![change library name](/images/python_on_visual_cpp/change_lib_name.PNG)
 
 Open the attribute of our msvar project and set additional Python library:
 
-![set include](../images/python_on_visual_cpp/set_include.PNG)
+![set include](/images/python_on_visual_cpp/set_include.PNG)
 
-![set library](../images/python_on_visual_cpp/set_lib.PNG)
+![set library](/images/python_on_visual_cpp/set_lib.PNG)
 
-![set python27_d](../images/python_on_visual_cpp/set_python_lib.PNG)
+![set python27_d](/images/python_on_visual_cpp/set_python_lib.PNG)
 
 #### Step 1.3: Write C++ code and test
 
@@ -177,11 +177,11 @@ Run the code above under **Debug** mode. If there is no error, we can package it
 
 Create a new Win32 Console Application called **msvarDLL** under the same solution:
 
-![new Win32 project](../images/python_on_visual_cpp/new_win32_project.PNG)
+![new Win32 project](/images/python_on_visual_cpp/new_win32_project.PNG)
 
 Enter the guide, click **next step**, choose **DLL** type and finish creation:
 
-![create DLL](../images/python_on_visual_cpp/create_DLL.PNG)
+![create DLL](/images/python_on_visual_cpp/create_DLL.PNG)
 
 Then open **msvarDLL** attribute and set Python **include** and **libs** path like step 1.2. Next, we create **msvar.h** file and write following configuration:
 
@@ -218,13 +218,13 @@ void msvar(char* pFile, char* cFile) {...}
 
 Set our **msvarDLL** project as the startup project and recreate the solution, we eventually get the `.dll` file of our msvar model:
 
-![create DLL](../images/python_on_visual_cpp/get_DLL_file.PNG)
+![create DLL](/images/python_on_visual_cpp/get_DLL_file.PNG)
 
 ### Step 3: Import the DLL file of step 2 and use the model on C# programs
 
 Create a new C# Console Application called **msvarDLLTest** under the same solution:
 
-![test DLL](../images/python_on_visual_cpp/create_CSharp_project.PNG)
+![test DLL](/images/python_on_visual_cpp/create_CSharp_project.PNG)
 
 Add following C# program to run the msvar model of Python:
 
@@ -259,4 +259,4 @@ namespace msvarDLLTest
 
 Finally, we run the C# msvar model using close price data of IF with 2 regime, and got the correct result:
 
-![result](../images/python_on_visual_cpp/get_result.PNG)
+![result](/images/python_on_visual_cpp/get_result.PNG)
