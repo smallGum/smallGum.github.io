@@ -8,6 +8,18 @@ image:
   feature: abstract-8.jpg
 ---
 
+<head>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    </script>
+</head>
+
 ## Introduction
 
 Thanks to Michael Nielsen's book [*Neural Networks and Deep Learning*](http://neuralnetworksanddeeplearning.com/) and [*TensorFlow Tutorial and Examples for Beginners with Latest APIs*](https://github.com/aymericdamien/TensorFlow-Examples), I've spent an easier life on learning neural networks. In order to put what I've learned into practice, I decide to repeat the experiments in the book using [**Tensorflow**](https://www.tensorflow.org/), a powerful tool for machine learning.
@@ -95,7 +107,9 @@ We see that there are 50000 samples in the trainning data and 10000 samples in t
 
 We use a three-layer neural network with (784, 30, 10) neurons to recognize the digits (0-9, 10 classes):
 
-![neural network](./images/network.jpg)
+<figure>
+	<img src="/images/learn_tensorflow/network.jpg" alt="neural network structure">
+</figure>
 
 We have 10 neurons as output to recognize the digit, meaning that a digit's label should be represented as a 10-dimension vector. For example, if the label of the $i$-th sample $x^{(i)}$ is $4$ , we represent its label as $y^{(i)} = (0, 0, 0, 0, 1, 0, 0, 0, 0, 0)$ ; if the label of the $i$-th sample $x^{(i)}$ is $9$, we represent its label as $y^{(i)} = (0, 0, 0, 0, 0, 0, 0, 0, 0, 1)$ , so on and so forth. Therefore, we extend the label of each digit to the shape of (10,). Consequently, the shape of `Y` and `test_Y` would be extended to (50000, 10) and (10000, 10), respectively.
 
