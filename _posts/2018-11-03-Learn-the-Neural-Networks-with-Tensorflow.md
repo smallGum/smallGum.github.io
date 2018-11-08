@@ -138,7 +138,8 @@ print ('test data shape: ', testY_vector.shape)
 The trainning configuration and hyper-parameters are set as follows:
 
 + activation function: $\sigma (z) = \frac{1}{1 + e^{-z}}$
-+ cost function: $J(\theta) = \frac{1}{2N} \sum_{i = 1}^{N} ||y^{(i)} - h(x^{(i)})||^2 $, where $N$ is the total number of training inputs, $y^{(i)}$ is the vector of $i$-th sample's label, $h(x^{(i)})$ is the vector of $i$-th sample's prediction label. $\theta$ contains the weights $w$ and the biases $b$ of neurons.
++ cost function: $J(\theta) = \frac{1}{2N} \sum_{i = 1}^{N} ||y^{(i)} - h(x^{(i)})||^2 $,
+    where $N$ is the total number of training inputs, $y^{(i)}$ is the vector of $i$-th sample's label, $h(x^{(i)})$ is the vector of $i$-th sample's prediction label. $\theta$ contains the weights $w$ and the biases $b$ of neurons.
 + training epochs: $30$
 + mini-batch size: $10$
 + learning rate: $\eta = 3.0$
