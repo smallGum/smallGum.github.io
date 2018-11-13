@@ -52,7 +52,11 @@ t-6 & 0.285 & 1.368 & 0.552 & 0.623 & 0.247
 \end{array}
 $$
 
-We consider $X_{t-1}=({x^1_{t-1}, x^2_{t-1}, x^3_{t-1}, x^4_{t-1}, x^5_{t-1}})=({0.412, -0.588, 0.618, 0.673, 0.661}), X_{t-2}=({0.399, 1.399, 0.598, -0.388, 0.416})$, so on and so forth. Our goal is to figure out the values of $\mathbb{E}[X_{t}|X_{t-1}, X_{t-2}, ..., X_{t-6}]$, that is, the values of $?$ in the above table. 
+We consider 
+$X_{t-1}=({x^1_{t-1}, x^2_{t-1}, x^3_{t-1}, x^4_{t-1}, x^5_{t-1}})=({0.412, -0.588, 0.618, 0.673, 0.661}), X_{t-2}=({0.399, 1.399, 0.598, -0.388, 0.416})$, 
+so on and so forth. Our goal is to figure out the values of 
+$\mathbb{E}[X_{t}|X_{t-1}, X_{t-2}, ..., X_{t-6}]$, 
+that is, the values of $?$ in the above table. 
 
 ## CNN Model
 
