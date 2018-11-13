@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Learn the Neural Networks with Tensorflow (1)
+title: Learn the Neural Networks with Tensorflow (I)
 description: "A summary of using Tensorflow to train Neural Networks"
 modified: 2018-11-03
 tags: [Deep Learning]
