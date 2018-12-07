@@ -48,13 +48,13 @@
         {% if page.share != false %}{% include social-share.html %}{% endif %}
       </footer>
     </div><!-- /.entry-content -->
-    {% if page.comments != false and site.disqus_shortname %}<section id="disqus_thread"></section><!-- /#disqus_thread -->{% endif %}
+    {% if site.intensedebate_comments %}
+      {% include intensedebate-comments.html %}
+    {% endif %}
+    <!-- /#disqus_thread -->
+    <!--{% if page.comments != false and site.disqus_shortname %}<section id="disqus_thread"></section>{% endif %}-->
     {% if site.related_posts.size > 0 %}{% include read-more.html %}{% endif %}
   </article>
-
-  {% if site.intensedebate_comments %}
-    {% include intensedebate-comments.html %}
-  {% endif %}
 </div><!-- /#main -->
 
 <div class="footer-wrapper">
