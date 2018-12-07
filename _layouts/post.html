@@ -49,7 +49,9 @@
       </footer>
     </div><!-- /.entry-content -->
     {% if site.intensedebate_comments %}
-      {% include intensedebate-comments.html %}
+      <section id="disqus_thread">
+        {% include intensedebate-comments.html %}
+      </section>
     {% endif %}
     <!-- /#disqus_thread -->
     <!--{% if page.comments != false and site.disqus_shortname %}<section id="disqus_thread"></section>{% endif %}-->
