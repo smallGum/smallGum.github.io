@@ -48,6 +48,12 @@
         {% if page.share != false %}{% include social-share.html %}{% endif %}
       </footer>
     </div><!-- /.entry-content -->
+    {% if site.disqus_shortname %}
+      <section id="disqus_thread">
+        {% include disqus_comments.html %}
+      </section>
+    {% endif %}
+
     {% if site.intensedebate_comments %}
       <section id="disqus_thread">
         {% include intensedebate-comments.html %}
