@@ -50,8 +50,11 @@
     </div><!-- /.entry-content -->
     <section id="disqus_thread">
       <div id="gitmentContainer"></div>
-      <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-      <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+
+      <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+      <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>-->
+      <link rel="stylesheet" href="{{ site.url }}/assets/css/gitment.css">
+      <script src="{{ site.url }}/assets/js/plugins/gitment.js"></script>
       <script>
         var gitment = new Gitment({
             owner: 'smallGum',
