@@ -48,6 +48,23 @@
         {% if page.share != false %}{% include social-share.html %}{% endif %}
       </footer>
     </div><!-- /.entry-content -->
+    <section id="disqus_thread">
+      <div id="gitmentContainer"></div>
+      <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+      <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+      <script>
+        var gitment = new Gitment({
+            owner: 'smallGum',
+            repo: 'smallGum.github.io',
+            oauth: {
+                client_id: '65511c3f0768d200b2d9',
+                client_secret: '7b3187ae32f38e345351806bb95f70bfb603d5ac',
+            },
+        });
+        gitment.render('gitmentContainer');
+      </script>
+    </section>
+
     {% if site.disqus_shortname %}
       <section id="disqus_thread">
         {% include disqus_comments.html %}
