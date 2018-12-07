@@ -53,6 +53,10 @@
   </article>
 </div><!-- /#main -->
 
+{% if site.intensedebate_comments %}
+  {% include intensedebate-comments.html %}
+{% endif %}
+
 <div class="footer-wrapper">
   <footer role="contentinfo">
     {% include footer.html %}
