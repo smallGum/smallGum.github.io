@@ -1,11 +1,13 @@
 ---
 layout: post
 title: Run Python Model on Visual Studio (C#)
-description: "A tutorial of using Python on Visual Studio"
-modified: 2018-10-03
-tags: [Programming Tricks]
-image:
-  feature: abstract-10.jpg
+subtitle: "A tutorial of using Python on Visual Studio"
+date: 2018-10-03 19:30:00
+author: "Maverick"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - Programming
+catalog: true
 ---
 
 ## Introduction
@@ -65,33 +67,33 @@ Note that in order to avoid type errors while passing parameters from C# to C++ 
 Open Visual Studio Ultimate 2012 and create a new Visual C++ Empty Project:
 
 <figure>
-	<img src="/images/python_on_visual_cpp/new_C++_project.png" alt="msvar console application">
+    <img src="/images/python_on_visual_cpp/new_C++_project.png" alt="msvar console application">
 </figure>
 
 Enter Python installation directory and copy **include** and **libs** to our msvar project's location:
 
 <figure>
-	<img src="/images/python_on_visual_cpp/copy_files.png" alt="copy python files">
+    <img src="/images/python_on_visual_cpp/copy_files.png" alt="copy python files">
 </figure>
 
 Since the **Debug** mode on Visual Studio requires `python27_d.lib` file rather than `python27.lib`, we must change this file's name in **libs** directory:
 
 <figure>
-	<img src="/images/python_on_visual_cpp/change_lib_name.png" alt="change library name">
+    <img src="/images/python_on_visual_cpp/change_lib_name.png" alt="change library name">
 </figure>
 
 Open the attribute of our msvar project and set additional Python library:
 
 <figure>
-	<img src="/images/python_on_visual_cpp/set_include.png" alt="set include">
+    <img src="/images/python_on_visual_cpp/set_include.png" alt="set include">
 </figure>
 
 <figure>
-	<img src="/images/python_on_visual_cpp/set_lib.png" alt="set library">
+    <img src="/images/python_on_visual_cpp/set_lib.png" alt="set library">
 </figure>
 
 <figure>
-	<img src="/images/python_on_visual_cpp/set_python_lib.png" alt="set python27_d">
+    <img src="/images/python_on_visual_cpp/set_python_lib.png" alt="set python27_d">
 </figure>
 
 #### Step 1.3: Write C++ code and test
@@ -110,76 +112,76 @@ using namespace std;
 // param: pFile the directory of your Python scripts
 // param: cFile the path of your config file
 void msvar(char* pFile, char* cFile) {
-	string pythonFilePath = string(pFile);
-	string configFilePath = string(cFile);
+    string pythonFilePath = string(pFile);
+    string configFilePath = string(cFile);
 
-	// Initialize Python and load models
-	Py_Initialize();
+    // Initialize Python and load models
+    Py_Initialize();
 
-	// check if the initialization success
-	if (!Py_IsInitialized()) {
-		cout << "Initialized failed !" << endl;
-		return ;
-	}
+    // check if the initialization success
+    if (!Py_IsInitialized()) {
+        cout << "Initialized failed !" << endl;
+        return ;
+    }
 
-	// add path of Python script to system path
-	// PyRun_SimpleString can execute Python script directly
-	PyRun_SimpleString("import sys");
-	PyRun_SimpleString("print ('---import sys---')");
-	string wholePath = "sys.path.append(\'" + pythonFilePath + "\')";
-	PyRun_SimpleString(wholePath.c_str());
-	PyRun_SimpleString("print(sys.path)");
+    // add path of Python script to system path
+    // PyRun_SimpleString can execute Python script directly
+    PyRun_SimpleString("import sys");
+    PyRun_SimpleString("print ('---import sys---')");
+    string wholePath = "sys.path.append(\'" + pythonFilePath + "\')";
+    PyRun_SimpleString(wholePath.c_str());
+    PyRun_SimpleString("print(sys.path)");
 
-	PyObject *pName = NULL, *pModule = NULL, *pDict = NULL, *pFunc = NULL, *pArgs = NULL;
-	
-	// load python script
-	cout << "Finding python file msvar......" << endl;
-	pName = PyUnicode_FromString("msvar");
-	pModule = PyImport_Import(pName);
-	if (!pModule) {
-		cout << "can't find python file." << endl;
-		return ;
-	}
+    PyObject *pName = NULL, *pModule = NULL, *pDict = NULL, *pFunc = NULL, *pArgs = NULL;
+    
+    // load python script
+    cout << "Finding python file msvar......" << endl;
+    pName = PyUnicode_FromString("msvar");
+    pModule = PyImport_Import(pName);
+    if (!pModule) {
+        cout << "can't find python file." << endl;
+        return ;
+    }
 
-	// get the functions
-	pDict = PyModule_GetDict(pModule);
-	if (!pDict) {
-		cout << "Get functions failed !" << endl;
-	}
+    // get the functions
+    pDict = PyModule_GetDict(pModule);
+    if (!pDict) {
+        cout << "Get functions failed !" << endl;
+    }
 
-	// find the msvar function  
-	cout << "Finding msvar function......" << endl;
-	pFunc = PyDict_GetItemString(pDict, "msvar");
-	if (!pFunc || !PyCallable_Check(pFunc)) {
-		cout << "can't find function msvar." << endl;
-		return ;
-	}
+    // find the msvar function  
+    cout << "Finding msvar function......" << endl;
+    pFunc = PyDict_GetItemString(pDict, "msvar");
+    if (!pFunc || !PyCallable_Check(pFunc)) {
+        cout << "can't find function msvar." << endl;
+        return ;
+    }
 
-	// add parameters
-	pArgs = PyTuple_New(1);
+    // add parameters
+    pArgs = PyTuple_New(1);
 
-	// PyObject* Py_BuildValue(char *format, ...) 
-	// translate variables in C++ to Python objects  
-	// common format:  
-	// s string
-	// i integer
-	// f float
-	// O a Python object
-	PyTuple_SetItem(pArgs, 0, Py_BuildValue("s", configFilePath.c_str()));
+    // PyObject* Py_BuildValue(char *format, ...) 
+    // translate variables in C++ to Python objects  
+    // common format:  
+    // s string
+    // i integer
+    // f float
+    // O a Python object
+    PyTuple_SetItem(pArgs, 0, Py_BuildValue("s", configFilePath.c_str()));
 
-	// call the Python function  
-	PyObject_CallObject(pFunc, pArgs);
+    // call the Python function  
+    PyObject_CallObject(pFunc, pArgs);
 
-	// finalize Python
-	Py_Finalize();
+    // finalize Python
+    Py_Finalize();
 }
 
 int main() {
-	// enter your corresponding file path
-	msvar("G:\\MSVAR\\Python_scripts", "G:\\MSVAR\\ControlParam\\controlParam.csv");
-	system("pause");
+    // enter your corresponding file path
+    msvar("G:\\MSVAR\\Python_scripts", "G:\\MSVAR\\ControlParam\\controlParam.csv");
+    system("pause");
 
-	return 0;
+    return 0;
 }
 ```
 
@@ -190,13 +192,13 @@ Run the code above under **Debug** mode. If there is no error, we can package it
 Create a new Win32 Console Application called **msvarDLL** under the same solution:
 
 <figure>
-	<img src="/images/python_on_visual_cpp/new_win32_project.png" alt="new Win32 project">
+    <img src="/images/python_on_visual_cpp/new_win32_project.png" alt="new Win32 project">
 </figure>
 
 Enter the guide, click **next step**, choose **DLL** type and finish creation:
 
 <figure>
-	<img src="/images/python_on_visual_cpp/create_DLL.png" alt="create DLL">
+    <img src="/images/python_on_visual_cpp/create_DLL.png" alt="create DLL">
 </figure>
 
 Then open **msvarDLL** attribute and set Python **include** and **libs** path like step 1.2. Next, we create **msvar.h** file and write following configuration:
@@ -235,7 +237,7 @@ void msvar(char* pFile, char* cFile) {...}
 Set our **msvarDLL** project as the startup project and recreate the solution, we eventually get the `.dll` file of our msvar model:
 
 <figure>
-	<img src="/images/python_on_visual_cpp/get_DLL_file.png" alt="get DLL file">
+    <img src="/images/python_on_visual_cpp/get_DLL_file.png" alt="get DLL file">
 </figure>
 
 ### Step 3: Import the DLL file of step 2 and use the model on C# programs
@@ -243,7 +245,7 @@ Set our **msvarDLL** project as the startup project and recreate the solution, w
 Create a new C# Console Application called **msvarDLLTest** under the same solution:
 
 <figure>
-	<img src="/images/python_on_visual_cpp/create_CSharp_project.png" alt="test DLL">
+    <img src="/images/python_on_visual_cpp/create_CSharp_project.png" alt="test DLL">
 </figure>
 
 Add following C# program to run the msvar model of Python:
@@ -280,5 +282,5 @@ namespace msvarDLLTest
 Finally, we run the C# msvar model using close price data of IF with 2 regime, and got the correct result:
 
 <figure>
-	<img src="/images/python_on_visual_cpp/get_result.png" alt="result">
+    <img src="/images/python_on_visual_cpp/get_result.png" alt="result">
 </figure>

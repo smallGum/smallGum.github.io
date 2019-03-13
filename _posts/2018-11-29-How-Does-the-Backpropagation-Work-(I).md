@@ -1,11 +1,13 @@
 ---
 layout: post
 title: How Does the Backpropagation Work (I)
-description: "Explain how backpropagation algorithm works in neural network"
-modified: 2018-11-29
-tags: [Deep Learning]
-image:
-  feature: abstract-3.jpg
+subtitle: "Explain how backpropagation algorithm works in neural network"
+date: 2018-11-29 15:30:00
+author:     "Maverick"
+header-img: "img/post-bg-alibaba.jpg"
+tags:
+    - Deep Learning
+catalog: true
 ---
 
 <head>

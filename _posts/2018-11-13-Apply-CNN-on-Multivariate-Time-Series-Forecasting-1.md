@@ -1,11 +1,13 @@
 ---
 layout: post
 title: Apply CNN on Multivariate Time Series Forecasting (I)
-description: "A process of applying CNN on Multivariate Time Series Forecasting"
-modified: 2018-11-13
-tags: [Deep Learning]
-image:
-  feature: abstract-5.jpg
+subtitle: "A process of applying CNN on Multivariate Time Series Forecasting"
+date: 2018-11-13 16:20:00
+author: "Maverick"
+header-img: "img/post-bg-android.jpg"
+tags: 
+    - Deep Learning
+catalog: true
 ---
 
 <head>

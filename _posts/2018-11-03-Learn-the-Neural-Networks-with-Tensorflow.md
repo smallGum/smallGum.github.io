@@ -1,11 +1,13 @@
 ---
 layout: post
 title: Learn the Neural Networks with Tensorflow (I)
-description: "A summary of using Tensorflow to train Neural Networks"
-modified: 2018-11-03
-tags: [Deep Learning]
-image:
-  feature: abstract-8.jpg
+subtitle: "A summary of using Tensorflow to train Neural Networks"
+date: 2018-11-03 20:00:00
+author: "Maverick"
+header-img: "img/post-bg-miui6.jpg"
+tags: 
+    - Deep Learning
+catalog: true
 ---
 
 <head>

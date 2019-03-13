@@ -1,90 +1,140 @@
-title:            Jack Cheng's Cellar
-description:      This is Jack Cheng's blogs base.
-#disqus_shortname: jack-chengs-cellar
-reading_time:     true
-#intensedebate_comments: true
-words_per_minute: 200
-# Your site's domain goes here (eg: https://mmistakes.github.io, http://yourdomain.com, etc)
-# When testing locally leave blank or use http://localhost:4000
-url: https://smallGum.github.io
+# Site settings
+title: Maverick Cheng
+SEOTitle: MC Blog
+header-img: img/header.jpg
+email: chengjzh@mail2.sysu.edu.cn
+description: "A stupid coder, machine learning engineer and lover of financial investment"
+keyword: "Machine Learning, Financial Engineering"
+url: "http://127.0.0.1:4000/"   #"https://smallGum.github.io"              # your host, for absolute URL
+baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
-# Owner/author information
-owner:
-  name:           Jack Cheng
-  avatar:         avatar.jpg
-  bio:            "A stupid coder. Major in Machine Learning, Natural Language Process, Financial Engineering, etc"
-  email:          chengjzh@mail2.sysu.edu.cn
-  # Social networking links used in footer. Update and remove as you like.
-  twitter:        
-  facebook:       
-  github:         
-  stackexchange:  
-  linkedin:       
-  instagram:      
-  flickr:         
-  tumblr:         
-  # google plus id, include the '+', eg +mmistakes
-  google_plus:
-
-# Background image to be tiled on all pages
-background: 
-
-# Analytics and webmaster tools stuff goes here
-google_analytics:   
-google_verify:      
-# https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
-bing_verify:         
-
-# http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+# Publish posts or collection documents with a future date.
 timezone:    Asia/Shanghai
-future:      false  # publish future dated posts --  true, false (default) 
+future: true
+
+# SNS settings
+RSS: false
+#weibo_username:     huxpro
+#zhihu_username:     huxpro
+github_username:    smallGum
+#twitter_username:   huxpro
+#facebook_username:  huxpro
+linkedin_username:  jiezhu-cheng-54492114a
+
+
+
+# Build settings
+# from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
 highlighter: rouge
-markdown:    kramdown
-plugins:
-  - jekyll-sitemap
-  - jekyll-paginate
-  - jekyll-gist
-  # - jekyll-feed
-sass:
-  sass_dir: _sass
-  style: compressed
+permalink: pretty
+paginate: 10
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md","README.zh.md"]
+anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
+# If you have timezone issue (e.g. #68) in China, uncomment to use this:
+#timezone: CN  
 
-# https://github.com/mojombo/jekyll/wiki/Permalinks
-permalink:   /:categories/:title/
 
-# Amount of post to show on home page
-paginate: 5
 
+# Gems
+# from PR#40, to support local preview for Jekyll 3.0
+# make sure you have this gem installed
+# `$ gem install jekyll-paginate`
+plugins: [jekyll-paginate]
+
+
+
+# Markdown settings
+# replace redcarpet to kramdown,
+# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
+# document: http://jekyllrb.com/docs/configuration/#kramdown
+markdown: kramdown
 kramdown:
-  input: GFM
-  auto_ids: true
-  footnote_nr: 1
-  entity_output: as_char
-  toc_levels: 1..6
-  enable_coderay: false
+  input: GFM                            # use Github Flavored Markdown !important
+  syntax_highlighter_opts:
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+      start_line: 1
 
-include: 
-  - .htaccess
-exclude: 
-  - "*.less"
-  - "*.sublime-project"
-  - "*.sublime-workspace"
-  - .asset-cache
-  - .bundle
-  - .jekyll-assets-cache
-  - .sass-cache
-  - CHANGELOG
-  - Capfile
-  - Gemfile
-  - Gruntfile.js
-  - LICENSE
-  - README
-  - Rakefile
-  - config
-  - gulpfile.js
-  - lib
-  - log
-  - node_modules
-  - package.json
-  - spec
-  - tmp
+
+
+# Disqus settings
+disqus_username: disqus_jqt1OoeBIY
+
+# Netease settings
+netease_comment: false
+
+
+
+# Analytics settings
+# Baidu Analytics 
+# ba_track_id: [your track id]
+
+# Google Analytics
+#ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
+#ga_domain: huangxuan.me
+
+
+
+# Sidebar settings
+sidebar: true                           # whether or not using Sidebar.
+sidebar-about-description: "Grand talents mature slowly."
+sidebar-avatar: /img/avatar.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+
+
+
+# Featured Tags
+featured-tags: true                     # whether or not using Feature-Tags
+featured-condition-size: 0              # A tag will be featured if the size of it is more than this condition value
+
+
+
+# Progressive Web Apps
+chrome-tab-theme-color: "#000000"
+service-worker: true
+
+
+
+# MathJax rendering for layout:page (e.g. post preview)
+page-mathjax: true
+
+
+
+# Friends
+#friends: [
+#    {
+    #     title: "Su",
+    #     href: "http://su.gallery/"
+    # },{
+#        title: "乱序",
+#        href: "http://mida.re/"
+#    },{
+#        title: "前端外刊评论",
+#        href: "http://qianduan.guru/"
+#    },{
+#        title: "天镶的博客",
+#        href: "http://lingyu.wang/"
+#    },{
+#        title: "Luke 的自留地",
+#        href: "http://hmqk1995.github.io"
+#    },{
+#        title: "Ebn's Blog",
+#        href: "http://ebnbin.com/"
+#    },{
+#        title: "SmdCn's Blog",
+#        href: "http://blog.smdcn.net"
+#    },{
+#        title: "David's Game",
+#        href: "https://www.ruoyaowu.com/"
+#    },{
+#        title: "DHong Say",
+#        href: "http://dhong.co"
+#    },{
+#        title: "尹峰以为",
+#        href: "http://ingf.github.io/"
+#    },{
+#        title: "解旻的博客",
+#        href: "http://xieminis.me/"
+#    }
+#]
