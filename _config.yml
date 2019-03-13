@@ -5,7 +5,7 @@ header-img: img/header.jpg
 email: chengjzh@mail2.sysu.edu.cn
 description: "A stupid coder, machine learning engineer and lover of financial investment"
 keyword: "Machine Learning, Financial Engineering"
-url: "http://127.0.0.1:4000/"   #"https://smallGum.github.io"              # your host, for absolute URL
+url: "https://smallGum.github.io"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
 # Publish posts or collection documents with a future date.
