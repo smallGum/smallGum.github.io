@@ -1,5 +1,5 @@
 
-My name is Maverick Cheng, a PHD student in Sun Yat-sen University. My research interest is machine learning and financial engineering.
+My name is Maverick, a PHD student in Sun Yat-sen University. My research interest is machine learning and financial engineering.
 
 ##### Website
 
