@@ -30,15 +30,15 @@ Eigendecomposition of a matrix, in which we decompose the matrix into a set of e
 
 ## Eigenvalue and Eigenvector
 
-> An eigenvector of a **square** matrix $\mathbf{A}$ is a **nonzero** vector $\mathbf{v}$ such that multiplication by $\mathbf{A}$ alters only the scale of $\mathbf{v}$:
-    $$
+> An eigenvector of a **square** matrix $$\mathbf{A}$$ is a **nonzero** vector $$\mathbf{v}$$ such that multiplication by $$\mathbf{A}$$ alters only the scale of $$\mathbf{v}$$:
+$$
         \mathbf{Av} = \lambda \mathbf{v}
-    $$
-    Where $\lambda$ is the eigenvalue corresponding to the eigenvector $\mathbf{v}$.
+$$
+> Where $$\lambda$$ is the eigenvalue corresponding to the eigenvector $$\mathbf{v}$$.
 
-Note that if $\mathbf{v}$ is the eigenvector of $\mathbf{A}$, then $s\mathbf{v}~(s \in \mathbb{R}, s \ne 0)$ is also the eigenvector of $\mathbf{A}$ with the same eigenvalue $\lambda$. Therefore, we usually focus on the unit eigenvectors, which means $||\mathbf{v}|| = 1$. Even that is not quite enough to make the eigenvector unique, since we may still multiply it by $-1$ to obtain another eigenvector with the same eigenvalue. Hence, we shall also require that the first nonzero component of an eigenvector be positive.
+Note that if $$\mathbf{v}$$ is the eigenvector of $$\mathbf{A}$$, then $$s\mathbf{v}~(s \in \mathbb{R}, s \ne 0)$$ is also the eigenvector of $$\mathbf{A}$$ with the same eigenvalue $$\lambda$$. Therefore, we usually focus on the unit eigenvectors, which means $$||\mathbf{v}|| = 1$$. Even that is not quite enough to make the eigenvector unique, since we may still multiply it by $$-1$$ to obtain another eigenvector with the same eigenvalue. Hence, we shall also require that the first nonzero component of an eigenvector be positive.
 
-Intuitively, the multiplication $\mathbf{Av}$ maps the vector $\mathbf{v}$ into another space, probably changing its size, direction or dimension. Particularly, if $\mathbf{v}$ is the eigenvector of $\mathbf{A}$, $\mathbf{Av}$ only scale $\mathbf{v}$ by corresponding eigenvalue $\lambda$. $\text{Figure 1}$ shows the differences between the transformations of eigenvectors and non-eigenvectors. For eigenvectors $\mathbf{v}^{(1)}$ and $\mathbf{v}^{(2)}$ of $\mathbf{A}$, the multiplication only changes their size. For non-eigenvectors $\mathbf{v}^{(3)}$, the multiplication not only changes its size but also its direction.
+Intuitively, the multiplication $$\mathbf{Av}$$ maps the vector $$\mathbf{v}$$ into another space, probably changing its size, direction or dimension. Particularly, if $$\mathbf{v}$$ is the eigenvector of $$\mathbf{A}$$, $$\mathbf{Av}$$ only scale $$\mathbf{v}$$ by corresponding eigenvalue $$\lambda$$. $$\text{Figure 1}$$ shows the differences between the transformations of eigenvectors and non-eigenvectors. For eigenvectors $$\mathbf{v}^{(1)}$$ and $$\mathbf{v}^{(2)}$$ of $$\mathbf{A}$$, the multiplication only changes their size. For non-eigenvectors $$\mathbf{v}^{(3)}$$, the multiplication not only changes its size but also its direction.
 
 <figure>
 	<img src="/images/eigendecomposition/eigenvectors.jpg" alt="Vector Transformation" style="zoom:60%">
@@ -48,7 +48,7 @@ $$
 \text{Figure 1: Vector Transformations}
 $$
 
-For an $n \times n$ square matrix, there will always be $n$ *eigenpairs* (an eigenvalue and its corresponding eigenvector), although in some cases, some of the eigenvalues will be identical. And the eigenvector with the largest eigenvalue is called the **principal eigenvector**.
+For an $$n \times n$$ square matrix, there will always be $$n$$ *eigenpairs* (an eigenvalue and its corresponding eigenvector), although in some cases, some of the eigenvalues will be identical. And the eigenvector with the largest eigenvalue is called the **principal eigenvector**.
 
 ## Computing Eigenvalues and Eigenvectors
 
@@ -56,9 +56,9 @@ There are [various algorithms](https://en.wikipedia.org/wiki/Eigenvalue_algorith
 
 ### Determinant
 
-The determinant of a **square** matrix $\mathbf{A}$, denoted as $det(\mathbf{A})$ or $|\mathbf{A}|$, is a function that maps matrices to real scalars. According to the rule that the determinant of a matrix $\mathbf{M}$ must be 0 in order for $\mathbf{Mx} = \mathbf{0}$ to hold for a vector $\mathbf{x} \ne 0$, we can develop a basic method to compute eigenpairs for the matrix $\mathbf{M}$.
+The determinant of a **square** matrix $$\mathbf{A}$$, denoted as $$det(\mathbf{A})$$ or $$|\mathbf{A}|$$, is a function that maps matrices to real scalars. According to the rule that the determinant of a matrix $$\mathbf{M}$$ must be 0 in order for $$\mathbf{Mx} = \mathbf{0}$$ to hold for a vector $$\mathbf{x} \ne 0$$, we can develop a basic method to compute eigenpairs for the matrix $$\mathbf{M}$$.
 
-We first restate the equation $\mathbf{Av} = \lambda \mathbf{v}$ as $(\mathbf{A}-\lambda \mathbf{I})\mathbf{v} = \mathbf{0}$. The eigenvector $\mathbf{v}$ must be nonzero and thus the determinent of $\mathbf{A}-\lambda \mathbf{I}$ must be 0. The determinant of $\mathbf{A}-\lambda \mathbf{I}$ is an $n$-th degree polynomial in $\lambda$, whose roots are $n$ eigenvectors of the matrix $\mathbf{A}$. For each eigenvalue $\lambda_i$, we can obtain a vector $\mathbf{v}^{(i)}$ by solving the equation $\mathbf{Av}^{(i)} = \lambda_i \mathbf{v}^{(i)}$. Finally, we normalize $\mathbf{v}^{(i)}$ to get the eigenvector corresponding to the eigenvalue $\lambda_i$. For example, consider the matrix:
+We first restate the equation $$\mathbf{Av} = \lambda \mathbf{v}$$ as $$(\mathbf{A}-\lambda \mathbf{I})\mathbf{v} = \mathbf{0}$$. The eigenvector $$\mathbf{v}$$ must be nonzero and thus the determinent of $$\mathbf{A}-\lambda \mathbf{I}$$ must be 0. The determinant of $$\mathbf{A}-\lambda \mathbf{I}$$ is an $$n$$-th degree polynomial in $$\lambda$$, whose roots are $$n$$ eigenvectors of the matrix $$\mathbf{A}$$. For each eigenvalue $$\lambda_i$$, we can obtain a vector $$\mathbf{v}^{(i)}$$ by solving the equation $$\mathbf{Av}^{(i)} = \lambda_i \mathbf{v}^{(i)}$$. Finally, we normalize $$\mathbf{v}^{(i)}$$ to get the eigenvector corresponding to the eigenvalue $$\lambda_i$$. For example, consider the matrix:
 
 $$
 \mathbf{A} = \begin{bmatrix}
@@ -68,7 +68,7 @@ $$
 \end{bmatrix}
 $$
 
-Then $\mathbf{A}-\lambda \mathbf{I}$ is:
+Then $$\mathbf{A}-\lambda \mathbf{I}$$ is:
 
 $$
 \mathbf{A}-\lambda \mathbf{I} = \begin{bmatrix}
@@ -101,7 +101,7 @@ $$
 (\lambda-2)(\lambda+5)(\lambda-7)=0
 $$
 
-Solving the equation gives three eigenvalues $\lambda_1 = 2$, $\lambda_2 = -5$ and $\lambda_3=7$. Then we use the eigenvalues to compute the corresponding eigenvectors:
+Solving the equation gives three eigenvalues $$\lambda_1 = 2$$, $$\lambda_2 = -5$$ and $$\lambda_3=7$$. Then we use the eigenvalues to compute the corresponding eigenvectors:
 
 $$
 \begin{align}
@@ -195,21 +195,21 @@ $$
 \end{bmatrix}
 $$
 
-The major drawback of solving the determinant polynomial is that it is extremely inefficient for large matrices. The determinant of an $n \times n$ matrix has $n!$ terms, implying $O(n!)$ time for computation. Fortunately, various $O(n^3)$ algorithms have been proposed to compute the determinant more efficiently, such as the [Decomposition methods](https://en.wikipedia.org/wiki/Determinant#Calculation).
+The major drawback of solving the determinant polynomial is that it is extremely inefficient for large matrices. The determinant of an $$n \times n$$ matrix has $$n!$$ terms, implying $$O(n!)$$ time for computation. Fortunately, various $$O(n^3)$$ algorithms have been proposed to compute the determinant more efficiently, such as the [Decomposition methods](https://en.wikipedia.org/wiki/Determinant#Calculation).
 
 ### Power Iteration
 
 #### Compute the First Eigenpair
 
-Power iteration is generally used to find the eigenvector with the largest (in absolute value) eigenvalue of a [diagonalizable matrix](https://en.wikipedia.org/wiki/Diagonalizable_matrix) $\mathbf{M}$. We start with any nonzero vector $\mathbf{x}_0$ and then iterate:
+Power iteration is generally used to find the eigenvector with the largest (in absolute value) eigenvalue of a [diagonalizable matrix](https://en.wikipedia.org/wiki/Diagonalizable_matrix) $$\mathbf{M}$$. We start with any nonzero vector $$\mathbf{x}_0$$ and then iterate:
 
 $$
 \mathbf{x}_{k+1} = \frac{\mathbf{Mx}_k}{||\mathbf{Mx}_k||}
 $$
 
-We do the iteration until convergence, that is, $||\mathbf{x}_k − \mathbf{x}_{k+1}||$ is less than some small constant or we've reached the maximum iterations defined before. Let $\mathbf{x}_f$ be the final vector we obtained. Then $\mathbf{x}_f$ is approximately the eigenvector with greatest absolute eigenvalue of $\mathbf{M}$. Note that $\mathbf{x}_f$ will be a unit vector and thus we can get the corresponding eigenvalue simply by computing $\lambda = \mathbf{x}_f^\top \mathbf{Mx}_f$, since $\mathbf{Mx}_f = \lambda \mathbf{x}_f \Rightarrow \mathbf{x}_f^\top\mathbf{Mx}_f = \mathbf{x}_f^\top \lambda \mathbf{x}_f = \lambda \mathbf{x}_f^\top\mathbf{x}_f = \lambda$. 
+We do the iteration until convergence, that is, $$||\mathbf{x}_k − \mathbf{x}_{k+1}||$$ is less than some small constant or we've reached the maximum iterations defined before. Let $$\mathbf{x}_f$$ be the final vector we obtained. Then $$\mathbf{x}_f$$ is approximately the eigenvector with greatest absolute eigenvalue of $$\mathbf{M}$$. Note that $$\mathbf{x}_f$$ will be a unit vector and thus we can get the corresponding eigenvalue simply by computing $$\lambda = \mathbf{x}_f^\top \mathbf{Mx}_f$$, since $$\mathbf{Mx}_f = \lambda \mathbf{x}_f \Rightarrow \mathbf{x}_f^\top\mathbf{Mx}_f = \mathbf{x}_f^\top \lambda \mathbf{x}_f = \lambda \mathbf{x}_f^\top\mathbf{x}_f = \lambda$$. 
 
-Again, we set the `maximum iterations = 100, x_0 = array([[1],[1],[1]])` and use the power iteration to compute the first eigenpair of the matrix $\mathbf{A}$ defined in the last section:
+Again, we set the `maximum iterations = 100, x_0 = array([[1],[1],[1]])` and use the power iteration to compute the first eigenpair of the matrix $$\mathbf{A}$$ defined in the last section:
 
 
 ```python
@@ -246,9 +246,9 @@ We see that power iteration yields the eigenpair that approximates the eigenpair
 
 #### Find all Eigenpairs of Symmetric Matrix
 
-For the symmetric matrix $\mathbf{A}$ defined in the last section, we first compute the first eigenvector of the original matrix. And then we remove the first eigenvector from $\mathbf{A}$ and obtain a modified matrix $\mathbf{B}$. The first eigenvector of the new matrix $\mathbf{B}$ is the second eigenvector (eigenvector with the second-largest eigenvalue in absolute value) of the original matrix $\mathbf{A}$. We continue this process until we find the last eigenvector. In each step of the process, power iteration is used to find the first eigenpair of the new matrix.
+For the symmetric matrix $$\mathbf{A}$$ defined in the last section, we first compute the first eigenvector of the original matrix. And then we remove the first eigenvector from $$\mathbf{A}$$ and obtain a modified matrix $$\mathbf{B}$$. The first eigenvector of the new matrix $$\mathbf{B}$$ is the second eigenvector (eigenvector with the second-largest eigenvalue in absolute value) of the original matrix $$\mathbf{A}$$. We continue this process until we find the last eigenvector. In each step of the process, power iteration is used to find the first eigenpair of the new matrix.
 
-In the first step, we use power iteration to compute the first eigenpair of the original matrix $\mathbf{A}$:
+In the first step, we use power iteration to compute the first eigenpair of the original matrix $$\mathbf{A}$$:
 
 $$
 \mathbf{v}^{(3)} \approx \begin{bmatrix}
@@ -291,9 +291,9 @@ $$
 \end{align}
 $$
 
-and use power iteration on $\mathbf{B}$ to compute its first eigenpair. The first eigenpair of $\mathbf{B}$ is the second eigenpair of $\mathbf{A}$ because:
+and use power iteration on $$\mathbf{B}$$ to compute its first eigenpair. The first eigenpair of $$\mathbf{B}$$ is the second eigenpair of $$\mathbf{A}$$ because:
 
-1. If $\mathbf{v}$ is the first eigenvector of $\mathbf{A}$ with corresponding eigenvalue $\lambda \ne 0$, it is also an eigenvector of $\mathbf{B}$ with corresponding eigenvalue $\lambda^{'} = 0$.
+1. If $$\mathbf{v}$$ is the first eigenvector of $$\mathbf{A}$$ with corresponding eigenvalue $$\lambda \ne 0$$, it is also an eigenvector of $$\mathbf{B}$$ with corresponding eigenvalue $$\lambda^{'} = 0$$.
 
     $$
     \begin{align}
@@ -302,8 +302,8 @@ and use power iteration on $\mathbf{B}$ to compute its first eigenpair. The firs
     \end{align}
     $$
 
-    Note that $\mathbf{v}^\top \mathbf{v} = 1$ since $\mathbf{v}$ is a unit vector. In other words, we eliminate the influence of the first eigenvector by setting its associated eigenvalue to zero.
-2. If $\mathbf{x}$ and $\lambda_x \ne 0$ are an eigenpair of $\mathbf{A}$ other than the first eigenpair $(\mathbf{v}, \lambda)$, then they are also an eigenpair of $\mathbf{B}$:
+    Note that $$\mathbf{v}^\top \mathbf{v} = 1$$ since $$\mathbf{v}$$ is a unit vector. In other words, we eliminate the influence of the first eigenvector by setting its associated eigenvalue to zero.
+2. If $$\mathbf{x}$$ and $$\lambda_x \ne 0$$ are an eigenpair of $$\mathbf{A}$$ other than the first eigenpair $$(\mathbf{v}, \lambda)$$, then they are also an eigenpair of $$\mathbf{B}$$:
 
     $$
     \begin{align}
@@ -312,9 +312,9 @@ and use power iteration on $\mathbf{B}$ to compute its first eigenpair. The firs
     \end{align}
     $$
     
-    Note that $\mathbf{v}^\top \mathbf{x} = 0$ since the eigenvectors of a symmetric matrix are *orthogonal*.
+    Note that $$\mathbf{v}^\top \mathbf{x} = 0$$ since the eigenvectors of a symmetric matrix are *orthogonal*.
 
-In the third step, we use the power iteration to compute the first eigenpair of the matrix $\mathbf{B}$, which is also the second eigenpair of the original matrix $\mathbf{A}$:
+In the third step, we use the power iteration to compute the first eigenpair of the matrix $$\mathbf{B}$$, which is also the second eigenpair of the original matrix $$\mathbf{A}$$:
 
 
 ```python
@@ -377,7 +377,7 @@ $$
 \end{align}
 $$
 
-Again, we apply the power iteration on the new matrix and find the last eigenpair of $\mathbf{A}$:
+Again, we apply the power iteration on the new matrix and find the last eigenpair of $$\mathbf{A}$$:
 
 
 ```python
@@ -407,7 +407,7 @@ print('First eigenvalue of C:', lamda[0][0])
     First eigenvalue of C: 1.9999800807969734
 
 
-We multiply the first eigenvector of $\mathbf{C}$ by $-1$ since we require that the first nonzero component of an eigenvector be positive:
+We multiply the first eigenvector of $$\mathbf{C}$$ by $$-1$$ since we require that the first nonzero component of an eigenvector be positive:
 
 $$
 \mathbf{v}^{(1)} \approx \begin{bmatrix}
@@ -419,7 +419,7 @@ $$
 
 ## Eigendecomposition
 
-Given $n$ linearly independent eigenvectors $\{\mathbf{v}^{(1)}, ..., \mathbf{v}^{(n)}\}$ of an $n \times n$ matrix $\mathbf{M}$ with corresponding eigenvalues $\{\lambda_1,...,\lambda_n\}$, we can form the matrix $\mathbf{V}$ of eigenvectors and diagonal matrix $\mathbf{\Lambda}$ of eigenvalues:
+Given $$n$$ linearly independent eigenvectors $$\{\mathbf{v}^{(1)}, ..., \mathbf{v}^{(n)}\}$$ of an $$n \times n$$ matrix $$\mathbf{M}$$ with corresponding eigenvalues $$\{\lambda_1,...,\lambda_n\}$$, we can form the matrix $$\mathbf{V}$$ of eigenvectors and diagonal matrix $$\mathbf{\Lambda}$$ of eigenvalues:
 
 $$
 \mathbf{V} = \begin{bmatrix}
@@ -435,7 +435,7 @@ v^{(1)}_n & v^{(2)}_n & \cdots & v^{(n)}_n
 \end{bmatrix}
 $$
 
-The eigendecompisition of $\mathbf{M}$ is then given by:
+The eigendecompisition of $$\mathbf{M}$$ is then given by:
 
 $$
 \mathbf{M} = \mathbf{V\Lambda V}^{-1}
@@ -447,7 +447,7 @@ $$
 \mathbf{M} = \mathbf{Q\Lambda Q}^\top
 $$
 
-where $\mathbf{Q}$ is an [orthogonal matrix](https://en.wikipedia.org/wiki/Orthogonal_matrix) composed of eigenvectors of $\mathbf{M}$ and thus $\mathbf{Q}^{-1} = \mathbf{Q}^\top$. For example, the real symmetric matrix $\mathbf{A}$ can be decomposed by:
+where $$\mathbf{Q}$$ is an [orthogonal matrix](https://en.wikipedia.org/wiki/Orthogonal_matrix) composed of eigenvectors of $$\mathbf{M}$$ and thus $$\mathbf{Q}^{-1} = \mathbf{Q}^\top$$. For example, the real symmetric matrix $$\mathbf{A}$$ can be decomposed by:
 
 $$
 \begin{align}
@@ -491,7 +491,7 @@ $$
 
 The eigendecomposition of a matrix tells us many useful facts about the matrix:
 
-+ The matrix is singular if and only if any of the eigenvalues are $0$. Suppose that an eigenvalue $\lambda$ of the matrix $\mathbf{A}$ is $0$ and the corresponding eigenvector is $\mathbf{v} = [v_1, v_2, ..., v_n]^\top$, then we have:
++ The matrix is singular if and only if any of the eigenvalues are $$0$$. Suppose that an eigenvalue $$\lambda$$ of the matrix $$\mathbf{A}$$ is $$0$$ and the corresponding eigenvector is $$\mathbf{v} = [v_1, v_2, ..., v_n]^\top$$, then we have:
 
     $$
     \begin{align}
@@ -501,7 +501,7 @@ The eigendecomposition of a matrix tells us many useful facts about the matrix:
     \end{align}
     $$
 
-    This means the column vector $\mathbf{A}_{:,n}$ is the linear combination of other column vectors, implying the matrix is singular. And if the matrix is singular, there must be an eigenvalue that is equal to $0$.
+    This means the column vector $$\mathbf{A}_{:,n}$$ is the linear combination of other column vectors, implying the matrix is singular. And if the matrix is singular, there must be an eigenvalue that is equal to $$0$$.
 + A matrix whose eigenvalues are all positive is called **positive definite**; a matrix whose eigenvalues are all positive or zero valued is called **positive semidefinite**; the **negative definite** and the **negative semidefinite** is defined in a similar way.
     
 ## Conclusion
