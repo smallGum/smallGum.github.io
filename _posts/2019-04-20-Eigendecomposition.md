@@ -36,7 +36,7 @@ $$
 $$
 > Where $$\lambda$$ is the eigenvalue corresponding to the eigenvector $$\mathbf{v}$$.
 
-Note that if $$\mathbf{v}$$ is the eigenvector of $$\mathbf{A}$$, then $$s\mathbf{v}~(s \in \mathbb{R}, s \ne 0)$$ is also the eigenvector of $$\mathbf{A}$$ with the same eigenvalue $$\lambda$$. Therefore, we usually focus on the unit eigenvectors, which means $$||\mathbf{v}|| = 1$$. Even that is not quite enough to make the eigenvector unique, since we may still multiply it by $$-1$$ to obtain another eigenvector with the same eigenvalue. Hence, we shall also require that the first nonzero component of an eigenvector be positive.
+Note that if $$\mathbf{v}$$ is the eigenvector of $$\mathbf{A}$$, then $$s\mathbf{v}~(s \in \mathbb{R}, s \ne 0)$$ is also the eigenvector of $$\mathbf{A}$$ with the same eigenvalue $$\lambda$$. Therefore, we usually focus on the unit eigenvectors, which means $$\lvert\lvert\mathbf{v}\rvert\rvert = 1$$. Even that is not quite enough to make the eigenvector unique, since we may still multiply it by $$-1$$ to obtain another eigenvector with the same eigenvalue. Hence, we shall also require that the first nonzero component of an eigenvector be positive.
 
 Intuitively, the multiplication $$\mathbf{Av}$$ maps the vector $$\mathbf{v}$$ into another space, probably changing its size, direction or dimension. Particularly, if $$\mathbf{v}$$ is the eigenvector of $$\mathbf{A}$$, $$\mathbf{Av}$$ only scale $$\mathbf{v}$$ by corresponding eigenvalue $$\lambda$$. $$\text{Figure 1}$$ shows the differences between the transformations of eigenvectors and non-eigenvectors. For eigenvectors $$\mathbf{v}^{(1)}$$ and $$\mathbf{v}^{(2)}$$ of $$\mathbf{A}$$, the multiplication only changes their size. For non-eigenvectors $$\mathbf{v}^{(3)}$$, the multiplication not only changes its size but also its direction.
 
@@ -56,7 +56,7 @@ There are [various algorithms](https://en.wikipedia.org/wiki/Eigenvalue_algorith
 
 ### Determinant
 
-The determinant of a **square** matrix $$\mathbf{A}$$, denoted as $$det(\mathbf{A})$$ or $$|\mathbf{A}|$$, is a function that maps matrices to real scalars. According to the rule that the determinant of a matrix $$\mathbf{M}$$ must be 0 in order for $$\mathbf{Mx} = \mathbf{0}$$ to hold for a vector $$\mathbf{x} \ne 0$$, we can develop a basic method to compute eigenpairs for the matrix $$\mathbf{M}$$.
+The determinant of a **square** matrix $$\mathbf{A}$$, denoted as $$det(\mathbf{A})$$ or $$\lvert\mathbf{A}\rvert$$, is a function that maps matrices to real scalars. According to the rule that the determinant of a matrix $$\mathbf{M}$$ must be 0 in order for $$\mathbf{Mx} = \mathbf{0}$$ to hold for a vector $$\mathbf{x} \ne 0$$, we can develop a basic method to compute eigenpairs for the matrix $$\mathbf{M}$$.
 
 We first restate the equation $$\mathbf{Av} = \lambda \mathbf{v}$$ as $$(\mathbf{A}-\lambda \mathbf{I})\mathbf{v} = \mathbf{0}$$. The eigenvector $$\mathbf{v}$$ must be nonzero and thus the determinent of $$\mathbf{A}-\lambda \mathbf{I}$$ must be 0. The determinant of $$\mathbf{A}-\lambda \mathbf{I}$$ is an $$n$$-th degree polynomial in $$\lambda$$, whose roots are $$n$$ eigenvectors of the matrix $$\mathbf{A}$$. For each eigenvalue $$\lambda_i$$, we can obtain a vector $$\mathbf{v}^{(i)}$$ by solving the equation $$\mathbf{Av}^{(i)} = \lambda_i \mathbf{v}^{(i)}$$. Finally, we normalize $$\mathbf{v}^{(i)}$$ to get the eigenvector corresponding to the eigenvalue $$\lambda_i$$. For example, consider the matrix:
 
@@ -204,10 +204,10 @@ The major drawback of solving the determinant polynomial is that it is extremely
 Power iteration is generally used to find the eigenvector with the largest (in absolute value) eigenvalue of a [diagonalizable matrix](https://en.wikipedia.org/wiki/Diagonalizable_matrix) $$\mathbf{M}$$. We start with any nonzero vector $$\mathbf{x}_0$$ and then iterate:
 
 $$
-\mathbf{x}_{k+1} = \frac{\mathbf{Mx}_k}{||\mathbf{Mx}_k||}
+\mathbf{x}_{k+1} = \frac{\mathbf{Mx}_k}{\lvert\lvert\mathbf{Mx}_k\rvert\rvert}
 $$
 
-We do the iteration until convergence, that is, $$||\mathbf{x}_k − \mathbf{x}_{k+1}||$$ is less than some small constant or we've reached the maximum iterations defined before. Let $$\mathbf{x}_f$$ be the final vector we obtained. Then $$\mathbf{x}_f$$ is approximately the eigenvector with greatest absolute eigenvalue of $$\mathbf{M}$$. Note that $$\mathbf{x}_f$$ will be a unit vector and thus we can get the corresponding eigenvalue simply by computing $$\lambda = \mathbf{x}_f^\top \mathbf{Mx}_f$$, since $$\mathbf{Mx}_f = \lambda \mathbf{x}_f \Rightarrow \mathbf{x}_f^\top\mathbf{Mx}_f = \mathbf{x}_f^\top \lambda \mathbf{x}_f = \lambda \mathbf{x}_f^\top\mathbf{x}_f = \lambda$$. 
+We do the iteration until convergence, that is, $$\lvert\lvert\mathbf{x}_k − \mathbf{x}_{k+1}\rvert\rvert$$ is less than some small constant or we've reached the maximum iterations defined before. Let $$\mathbf{x}_f$$ be the final vector we obtained. Then $$\mathbf{x}_f$$ is approximately the eigenvector with greatest absolute eigenvalue of $$\mathbf{M}$$. Note that $$\mathbf{x}_f$$ will be a unit vector and thus we can get the corresponding eigenvalue simply by computing $$\lambda = \mathbf{x}_f^\top \mathbf{Mx}_f$$, since $$\mathbf{Mx}_f = \lambda \mathbf{x}_f \Rightarrow \mathbf{x}_f^\top\mathbf{Mx}_f = \mathbf{x}_f^\top \lambda \mathbf{x}_f = \lambda \mathbf{x}_f^\top\mathbf{x}_f = \lambda$$. 
 
 Again, we set the `maximum iterations = 100, x_0 = array([[1],[1],[1]])` and use the power iteration to compute the first eigenpair of the matrix $$\mathbf{A}$$ defined in the last section:
 
@@ -386,9 +386,9 @@ max_iter = 100
 x_0 = np.array([[1.],[1.],[1.]])
 x_f = None
 for _ in range(max_iter):
-    x_f = np.dot(C, x_0)            # x_f = Bx_0
-    x_f_norm = np.linalg.norm(x_f)  # ||Bx_0||
-    x_f = x_f / x_f_norm            # Bx_0 / ||Bx_0||
+    x_f = np.dot(C, x_0)            # x_f = Cx_0
+    x_f_norm = np.linalg.norm(x_f)  # ||Cx_0||
+    x_f = x_f / x_f_norm            # Cx_0 / ||Cx_0||
     x_0 = x_f
 
 tmp = np.dot(C, x_f)
