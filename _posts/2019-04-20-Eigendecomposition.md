@@ -30,11 +30,7 @@ Eigendecomposition of a matrix, in which we decompose the matrix into a set of e
 
 ## Eigenvalue and Eigenvector
 
-> An eigenvector of a **square** matrix $$\mathbf{A}$$ is a **nonzero** vector $$\mathbf{v}$$ such that multiplication by $$\mathbf{A}$$ alters only the scale of $$\mathbf{v}$$:
-$$
-        \mathbf{Av} = \lambda \mathbf{v}
-$$
-> Where $$\lambda$$ is the eigenvalue corresponding to the eigenvector $$\mathbf{v}$$.
+> An eigenvector of a **square** matrix $$\mathbf{A}$$ is a **nonzero** vector $$\mathbf{v}$$ such that multiplication by $$\mathbf{A}$$ alters only the scale of $$\mathbf{v}$$: $$\mathbf{Av} = \lambda \mathbf{v}$$. Where $$\lambda$$ is the eigenvalue corresponding to the eigenvector $$\mathbf{v}$$.
 
 Note that if $$\mathbf{v}$$ is the eigenvector of $$\mathbf{A}$$, then $$s\mathbf{v}~(s \in \mathbb{R}, s \ne 0)$$ is also the eigenvector of $$\mathbf{A}$$ with the same eigenvalue $$\lambda$$. Therefore, we usually focus on the unit eigenvectors, which means $$\lvert\lvert\mathbf{v}\rvert\rvert = 1$$. Even that is not quite enough to make the eigenvector unique, since we may still multiply it by $$-1$$ to obtain another eigenvector with the same eigenvalue. Hence, we shall also require that the first nonzero component of an eigenvector be positive.
 
@@ -176,7 +172,8 @@ $$
 0.4472 \\
 -0.8944 \\
 0
-\end{bmatrix}, \mathbf{v}^{(2)} = \begin{bmatrix}
+\end{bmatrix} \\
+ \mathbf{v}^{(2)} = \begin{bmatrix}
 2  / \sqrt{2^2+1^2+(-1)^2}  \\
 1  / \sqrt{2^2+1^2+(-1)^2} \\
 -1 / \sqrt{2^2+1^2+(-1)^2}
@@ -184,7 +181,8 @@ $$
 0.8165 \\
 0.4082 \\
 -0.4082
-\end{bmatrix}, \mathbf{v}^{(3)} = \begin{bmatrix}
+\end{bmatrix} \\ 
+\mathbf{v}^{(3)} = \begin{bmatrix}
 2  / \sqrt{2^2+1^2+5^2}  \\
 1  / \sqrt{2^2+1^2+5^2} \\
 5  / \sqrt{2^2+1^2+5^2}
