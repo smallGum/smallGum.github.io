@@ -121,6 +121,7 @@ Next, we draw the contour map of the function $$f(\mathbf{x})$$ and mark the dir
 <figure>
 	<img src="/images/quadratic_optimization/grad_dir.jpg" alt="gradient direction" style="zoom:60%">
 </figure>
+
 $$
 \text{Figure 1: Directions of eigenvectors}
 $$
