@@ -35,13 +35,13 @@ $$
 \mathrm{a}x^2 + 2\mathrm{b}xy + \mathrm{c}y^2 = \mathrm{C}
 $$
 
-where $x, y$ are variables, $\mathrm{a, b, c}$ are constant coefficients and $\mathrm{C}$ is a constant. Denote the vector $\mathbf{x}=\begin{bmatrix}
+where $$x, y$$ are variables, $$\mathrm{a, b, c}$$ are constant coefficients and $$\mathrm{C}$$ is a constant. Denote the vector $$\mathbf{x}=\begin{bmatrix}
 x \\
 y
-\end{bmatrix}$ and the symmetric matrix $\mathbf{M}=\begin{bmatrix}
+\end{bmatrix}$$ and the symmetric matrix $$\mathbf{M}=\begin{bmatrix}
 \mathrm{a} & \mathrm{b} \\
 \mathrm{b} & \mathrm{c}
-\end{bmatrix}$. Then we can restate the quadratic equation above as the matrix multiplication:
+\end{bmatrix}$$. Then we can restate the quadratic equation above as the matrix multiplication:
 
 $$
 \mathrm{a}x^2 + 2\mathrm{b}xy + \mathrm{c}y^2 = \mathrm{C} \Leftrightarrow \begin{bmatrix}
@@ -98,13 +98,13 @@ $$
 f(\mathbf{x}) = \mathbf{x}^\top \mathbf{Mx}
 $$
 
-In this case, the eigenvectors of the symmetric matrix $\mathbf{M}$ tells us the information about the gradient direction of the function $f(\mathbf{x})$. For example, suppose that $\mathbf{x} = \begin{bmatrix}
+In this case, the eigenvectors of the symmetric matrix $$\mathbf{M}$$ tells us the information about the gradient direction of the function $$f(\mathbf{x})$$. For example, suppose that $$\mathbf{x} = \begin{bmatrix}
 x_1 \\
 x_2
-\end{bmatrix} \in \mathbb{R}^2$ and $\mathbf{M}=\begin{bmatrix}
+\end{bmatrix} \in \mathbb{R}^2$$ and $$\mathbf{M}=\begin{bmatrix}
 3 & 2 \\
 2 & 6
-\end{bmatrix}$, we first compute the eigenvectors and eigenvalues of the matrix $\mathbf{M}$ (Methods for computing eigenpairs are discussed in [this blog](https://smallgum.github.io/2019/04/20/Eigendecomposition/)):
+\end{bmatrix}$$, we first compute the eigenvectors and eigenvalues of the matrix $$\mathbf{M}$$ (Methods for computing eigenpairs are discussed in [this blog](https://smallgum.github.io/2019/04/20/Eigendecomposition/)):
 
 $$
 \mathbf{v}^{(1)} = \begin{bmatrix}
@@ -116,7 +116,7 @@ $$
 \end{bmatrix}, \lambda_2 = 2.0
 $$
 
-Next, we draw the contour map of the function $f(\mathbf{x})$ and mark the directions of the two eigenvectors:
+Next, we draw the contour map of the function $$f(\mathbf{x})$$ and mark the directions of the two eigenvectors:
 
 <figure>
 	<img src="/images/quadratic_optimization/grad_dir.jpg" alt="gradient direction" style="zoom:60%">
@@ -125,7 +125,7 @@ $$
 \text{Figure 1: Directions of eigenvectors}
 $$
 
-We can see that the direction of the eigenvector with largest eigenvalue ($\mathbf{v}^{(1)}$) indicates the steepest gradient direction of $f(\mathbf{x})$ while the eigenvector with smallest eigenvalue ($\mathbf{v}^{(2)}$) indicates the most gradual gradient direction. In other words, the quadratic function $f(\mathbf{x})$ changes fastest along the direction of $\mathbf{v}^{(1)}$ while changes slowest along the direction of $\mathbf{v}^{(2)}$.
+We can see that the direction of the eigenvector with largest eigenvalue ($$\mathbf{v}^{(1)}$$) indicates the steepest gradient direction of $$f(\mathbf{x})$$ while the eigenvector with smallest eigenvalue ($$\mathbf{v}^{(2)}$$) indicates the most gradual gradient direction. In other words, the quadratic function $$f(\mathbf{x})$$ changes fastest along the direction of $$\mathbf{v}^{(1)}$$ while changes slowest along the direction of $$\mathbf{v}^{(2)}$$.
 
 ## Quadratic Optimization Problems
 
@@ -142,7 +142,7 @@ f_2(\mathbf{x}) &= \min_{\mathbf{x}} \mathbf{x}^\top \mathbf{Mx} ~~s.t.~~ \lvert
 \end{align}
 $$
 
-where $\mathbf{x} \in \mathbb{R}^n$ and $\mathbf{M} \in \mathbb{R}^{n \times n}$, we can find the solution according to the **Rayleigh–Ritz theorem**:
+where $$\mathbf{x} \in \mathbb{R}^n$$ and $$\mathbf{M} \in \mathbb{R}^{n \times n}$$, we can find the solution according to the **Rayleigh–Ritz theorem**:
 
 $$
 \begin{align}
@@ -156,7 +156,7 @@ $$
 \min \frac{\mathbf{x}^\top \mathbf{Mx}}{\mathbf{x}^\top \mathbf{x}} = \lambda_n ~~\text{with}~~ \mathbf{x}=\mathbf{v}_n
 $$
 
-The ratio $\frac{\mathbf{x}^\top \mathbf{Mx}}{\mathbf{x}^\top \mathbf{x}}$ is known as the **Rayleigh–Ritz ratio**. When $\lvert\lvert\mathbf{x}\rvert\rvert = 1$, we have $\mathbf{x}^\top \mathbf{x} = 1$, and we can normalize each $\mathbf{v}_i$ into a **unit eigenvector** $\mathbf{v}_i^{'}$ and obtain the optimized solution:
+The ratio $$\frac{\mathbf{x}^\top \mathbf{Mx}}{\mathbf{x}^\top \mathbf{x}}$$ is known as the **Rayleigh–Ritz ratio**. When $$\lvert\lvert\mathbf{x}\rvert\rvert = 1$$, we have $$\mathbf{x}^\top \mathbf{x} = 1$$, and we can normalize each $$\mathbf{v}_i$$ into a **unit eigenvector** $$\mathbf{v}_i^{'}$$ and obtain the optimized solution:
 
 $$
 \begin{align}
@@ -174,7 +174,7 @@ $$
 \end{align}
 $$
 
-where $\perp$ denotes the [orthogonal complement](https://en.wikipedia.org/wiki/Orthogonal_complement).
+where $$\perp$$ denotes the [orthogonal complement](https://en.wikipedia.org/wiki/Orthogonal_complement).
 
 ### Positive Definite Quadratic Function
 
@@ -184,7 +184,7 @@ $$
 f(\mathbf{x}) = \min_{\mathbf{x}} \frac{1}{2} \mathbf{x}^\top \mathbf{Mx} + \mathbf{x}^\top \mathbf{b}
 $$
 
-where $\mathbf{x} \in \mathbb{R}^n$ and $\mathbf{M} \in \mathbb{R}^{n \times n}$. If $\mathbf{M}$ is a **positive definite** symmetric matrix, we can obtain the optimized solution through the following proposition:
+where $$\mathbf{x} \in \mathbb{R}^n$$ and $$\mathbf{M} \in \mathbb{R}^{n \times n}$$. If $$\mathbf{M}$$ is a **positive definite** symmetric matrix, we can obtain the optimized solution through the following proposition:
 
 $$
 \text{If $\mathbf{M}$ is symmetric positive definite, then } \\
@@ -192,7 +192,7 @@ P(\mathbf{x}) = \frac{1}{2} \mathbf{x}^\top \mathbf{Mx} + \mathbf{x}^\top \mathb
 \text{assumes its minimum at the point $\mathbf{Mx} = \mathbf{b}$.}
 $$
 
-In order to prove the proposition above, the first thing we need to know is that $\forall \mathbf{x}, \mathbf{x}^\top \mathbf{Mx} > 0$ if $\mathbf{M}$ is symmetric, which can be easily proved by **Rayleigh–Ritz theorem**. Then we can prove the proposition above:
+In order to prove the proposition above, the first thing we need to know is that $$\forall \mathbf{x}, \mathbf{x}^\top \mathbf{Mx} > 0$$ if $$\mathbf{M}$$ is symmetric, which can be easily proved by **Rayleigh–Ritz theorem**. Then we can prove the proposition above:
 
 $$
 Proof. ~~\text{Let $\mathbf{x}$ be the solution of $\mathbf{Mx} = \mathbf{b}$. Then, $\forall \mathbf{y} \in \mathbb{R}^n$ and $\mathbf{y} \ne \mathbf{x}$}, \\
@@ -207,7 +207,7 @@ P(\mathbf{y}) - P(\mathbf{x}) &= \big(\frac{1}{2} \mathbf{y}^\top \mathbf{My} - 
 \end{align}
 $$
 
-Note that $\mathbf{y}^\top \mathbf{Mx} = \mathbf{x}^\top \mathbf{My}$ since $\mathbf{M}$ is symmetric. Hence, the optimized solution of $f(\mathbf{x})$ is the solution of $\mathbf{Mx} = \mathbf{b}$.
+Note that $$\mathbf{y}^\top \mathbf{Mx} = \mathbf{x}^\top \mathbf{My}$$ since $$\mathbf{M}$$ is symmetric. Hence, the optimized solution of $$f(\mathbf{x})$$ is the solution of $$\mathbf{Mx} = \mathbf{b}$$.
 
 ## Conclusion
 
