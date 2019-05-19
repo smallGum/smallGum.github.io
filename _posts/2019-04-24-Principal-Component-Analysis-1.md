@@ -213,12 +213,31 @@ is the eigenvector of the symmetric matrix $$\mathbf{M}^\top\mathbf{M}$$ whose c
 
 Finally, $$\mathbf{M}^{'} = (\mathbf{D}^\top\mathbf{M})^\top = \mathbf{MD}$$ is the compressed matrix of the raw data matrix.
 
+## Reduce computational complexity
+
+We now consider the relationship between the eigenpairs of $$\mathbf{M}^\top \mathbf{M}$$ and $$\mathbf{MM}^\top$$, where $$\mathbf{M} \in \mathbb{R}^{n \times d}$$. When $$n << d$$, which is very common in some applications like face recognition, it will require too much memory to store the matrix $$\mathbf{M}^\top \mathbf{M}$$ and computing its eigenpairs will be a horrendous task. Fortunately, we can find the eigenpairs of $$\mathbf{M}^\top \mathbf{M}$$ through computing the eigenpairs of $$\mathbf{MM}^\top$$. 
+
+Suppose that $$\mathbf{e}$$ is the eigenvector of the matrix $$\mathbf{MM}^\top$$ with corresponding eigenvalue $$\lambda$$, then we have:
+
+$$
+\begin{align}
+\mathbf{MM}^\top \mathbf{e} &= \lambda \mathbf{e} \\
+\text{Multiply both sides by $\mathbf{M}^\top$ on the left:} \\
+\mathbf{M}^\top\mathbf{MM}^\top \mathbf{e} &= \mathbf{M}^\top \lambda \mathbf{e} \\
+\mathbf{M}^\top\mathbf{M}(\mathbf{M}^\top \mathbf{e}) &= \lambda (\mathbf{M}^\top \mathbf{e})
+\end{align}
+$$
+
+We can see that when $$\mathbf{M}^\top \mathbf{e} \ne \mathbf{0}$$, $$\mathbf{M}^\top \mathbf{e}$$ is an eigenvector of $$\mathbf{M}^\top\mathbf{M}$$ with corresponding eigenvalue $$\lambda$$. However, when $$\mathbf{M}^\top \mathbf{e} = \mathbf{0}$$, it can not be an eigenvector and we have $$\mathbf{MM}^\top \mathbf{e} = \lambda \mathbf{e} = \mathbf{0}$$, implying $$\lambda = 0$$ since $$\mathbf{e} \ne \mathbf{0}$$ is an eigenvector of $$\mathbf{MM}^\top$$. Hence, we conclude that for a matrix $$\mathbf{M} \in \mathbb{R}^{n \times d}$$, the eigenvalues of $$\mathbf{MM}^\top$$ are the eigenvalues of $$\mathbf{M}^\top\mathbf{M}$$ plus additional 0’s when $$n >> d$$; and the eigenvalues of $$\mathbf{M}^\top\mathbf{M}$$ are the eigenvalues of $$\mathbf{MM}^\top$$ plus additional 0’s when $$n << d$$. 
+
+Finally, when we meet a data matrix $$\mathbf{M} \in \mathbb{R}^{n \times d}$$ where $$n << d$$, we can first compute the eigenpairs of $$\mathbf{MM}^\top$$ and multiply each eigenvector $$\mathbf{e}$$ by $$\mathbf{M}^\top$$ (i.e., $$\mathbf{M}^\top\mathbf{e}$$) to obtain the eigenvectors of $$\mathbf{M}^\top\mathbf{M}$$. In PCA, we only need to select the $$k$$ largest eigenvector of $$\mathbf{MM}^\top$$ for multiplication and thus reduce the computation complexity to $$O(n^3 + kdn^2) = O(n^3 + dn^2)$$, which is much less than $$O(d^3)$$ of computing the eigenpairs of $$\mathbf{M}^\top\mathbf{M}$$. (Remember that $$k$$ is a constant in PCA and it needs $$O(n^3)$$ time to compute the eigenpairs of an $$n \times n$$ symmetric matrix).
+
 ## PCA Algorithm
 
 Based on the derivations in the last section, we can now develop the PCA algorithm:
 
 1. Given a set of data sample $$\mathcal{X}=\{\mathbf{x}^{(1)}, \mathbf{x}^{(2)}, ..., \mathbf{x}^{(n)}\}$$, create the raw data matrix $$\mathbf{M} = [\mathbf{x}^{(1)}; \mathbf{x}^{(2)}; ...; \mathbf{x}^{(n)}]$$.
-2. Compute all eigenpairs of the symmetric matrix $$\mathbf{M}^\top\mathbf{M}$$.
+2. Compute all eigenpairs of the symmetric matrix $$\mathbf{M}^\top\mathbf{M}$$. When the number of columns are much larger than the number of rows, we compute the eigenpairs of $$\mathbf{MM}^\top$$ and use them to find the $$k$$ largest eigenpairs of $$\mathbf{M}^\top\mathbf{M}$$.
 3. Use $$k$$ eigenvectors corresponding to $$k$$ largest eigenvalues as columns to form the eigenmatrix $$\mathbf{D}$$.
 4. Apply matrix multiplication $$\mathbf{M}^{'}=\mathbf{MD}$$ to compress the raw data.
 5. Use $$\mathbf{M}^{r} = \mathbf{M}^{'}\mathbf{D}^\top \approx \mathbf{M}$$ to approximately reconstruct the raw data when necessary.
