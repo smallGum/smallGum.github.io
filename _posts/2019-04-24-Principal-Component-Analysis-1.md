@@ -213,7 +213,7 @@ is the eigenvector of the symmetric matrix $$\mathbf{M}^\top\mathbf{M}$$ whose c
 
 Finally, $$\mathbf{M}^{'} = (\mathbf{D}^\top\mathbf{M})^\top = \mathbf{MD}$$ is the compressed matrix of the raw data matrix.
 
-## Reduce computational complexity
+## Reduce Computational Complexity
 
 We now consider the relationship between the eigenpairs of $$\mathbf{M}^\top \mathbf{M}$$ and $$\mathbf{MM}^\top$$, where $$\mathbf{M} \in \mathbb{R}^{n \times d}$$. When $$n << d$$, which is very common in some applications like face recognition, it will require too much memory to store the matrix $$\mathbf{M}^\top \mathbf{M}$$ and computing its eigenpairs will be a horrendous task. Fortunately, we can find the eigenpairs of $$\mathbf{M}^\top \mathbf{M}$$ through computing the eigenpairs of $$\mathbf{MM}^\top$$. 
 
